@@ -1,35 +1,53 @@
 {
   "version": 2,
-  "builds": [
+  "buildCommand": "npm run build:all",
+  "outputDirectory": "dist",
+  "rewrites": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/assets/(.*)",
-      "headers": {
-        "cache-control": "public, max-age=31536000, immutable"
-      },
-      "continue": true
+      "source": "/assets/(.*)",
+      "destination": "/assets/$1"
     },
     {
-      "src": "/F.R.I.D.A.Y._(Marvel_Comics).jpg",
-      "headers": {
-        "cache-control": "public, max-age=31536000, immutable"
-      },
-      "continue": true
+      "source": "/F.R.I.D.A.Y._(Marvel_Comics).jpg",
+      "destination": "/F.R.I.D.A.Y._(Marvel_Comics).jpg"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/knolabs/(.*)",
+      "destination": "/knolabs-plumbing-shop-gemini-develop/knolabs-plumbing-shop-gemini-develop/dist/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
   "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "cache-control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/F.R.I.D.A.Y._(Marvel_Comics).jpg",
+      "headers": [
+        {
+          "key": "cache-control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/knolabs/(.*)",
+      "headers": [
+        {
+          "key": "cache-control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [
@@ -48,4 +66,4 @@
       ]
     }
   ]
-} 
+}
