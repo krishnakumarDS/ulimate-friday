@@ -5,10 +5,25 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "prebuild": "npx update-browserslist-db@latest",
+    "build": "tsc && vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:knolabs": "cd knolabs-plumbing-shop-gemini-develop/knolabs-plumbing-shop-gemini-develop && npm install && npm run build",
+    "build:all": "npm run build && npm run build:knolabs"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
